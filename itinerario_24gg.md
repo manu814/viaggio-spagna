@@ -13,9 +13,9 @@
 | 3 | ven 17/7 | 🚄 sosta Tarragona 🏆 → Valencia | treno ~3h | Tarragona 3h |
 | 4 | sab 18/7 | Valencia 🏆 (Lonja, Arts, Albufera) | — | giornata |
 | 5 | dom 19/7 | ritiro auto → Cala Granadella (opz. Guadalest+Algar) | 121 km · 1h35 | mare ½g+ |
-| 6 | lun 20/7 | → Cabo de Gata · bagni a Calblanque + Los Muertos/Agua Amarga (nord, sull'arrivo) → **San José** | 450 km · 5h41 ⚠️ | 2 bagni |
+| 6 | lun 20/7 | → Cabo de Gata · sosta bagno Calblanque → **San José** | 433 km · 5h17 ⚠️ | 1 bagno |
 | 7 | mar 21/7 | Mónsul + Genoveses (navetta da San José, a due passi) | navetta ~15 min | mare |
-| 8 | mer 22/7 | Los Escullos + La Isleta del Moro (cale vicine) / Cala Higuera a piedi | ~20 km · 25 min a/r | mare |
+| 8 | mer 22/7 | Cale NORD: Agua Amarga + **Cala de Enmedio** (la più bella, 30 min a piedi) | ~90 km · 1h30 a/r | mare |
 | 9 | gio 23/7 | Tabernas ★ (Mini Hollywood) + Guadix ★ → Granada (partenza diretta, no detour) | 232 km · 3h34 | 2 soste 1h30-2h |
 | 10 | ven 24/7 | **Alhambra 🏆** ⚠️prenotare + Albaicín tramonto | — | 3-4h + sera |
 | 11 | sab 25/7 | Las Alpujarras → **notte a Capileira** | 74 km · 1h26 | giornata + notte in quota |
