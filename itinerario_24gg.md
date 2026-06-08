@@ -1,11 +1,13 @@
 # Itinerario Sud Spagna — 24 giorni (versione SFORBICIATA, attiva)
-**Barcellona → Siviglia · 15 luglio – 7 agosto · 🚄 treno fino a Valencia, poi auto**
-~2.300 km auto · ~37h guida (media ~2h/g) · rotta v7 (fix Caminito-lunedì + Baelo-domenica + costa a risalire) · notti e orari nel file · mare ~5 giorni pieni · 8+ siti UNESCO
+**Barcellona → Siviglia · arrivo 14 luglio sera – ritorno 7 agosto · 🚄 treno fino a Valencia, poi auto**
+~2.300 km auto · ~37h guida (media ~2h/g) · rotta v7 (fix Caminito-lunedì + Baelo-domenica + costa a risalire) · notti e orari nel file · mare ~5 giorni pieni · 8+ siti UNESCO · **24 notti**
+✈️ **Voli:** andata **mar 14/7 Milano 18:10 → Barcellona 19:50** (notte-cuscinetto a BCN: le visite restano dal 15) · ritorno **ven 7/8 Siviglia 19:15** (in aeroporto ~17:15; auto già resa il 5/8). Le date **15/7→7/8 NON cambiano** → tutte le chiusure restano valide (Caminito mar 28/7, Baelo dom 2/8, Mezquita feriale 29/7, Itálica <15:00 il 5/8).
 ★ = recuperata dal taglio · 📌 = chat originale · ➕ = aggiunta · 🏆 = UNESCO
 (La versione integrale 57 giorni resta in `itinerario_completo.md` + `mappa_57gg_completa.html`)
 
 | G | Data | Tappa | Guida | Permanenza |
 |---|---|---|---|---|
+| 0 | mar 14/7 | ✈️ Arrivo Barcellona 19:50 — check-in, cena (notte-cuscinetto) | — | sera |
 | 1 | mer 15/7 | Barcellona — Sagrada Família 🏆 + Sant Pau | — | giornata |
 | 2 | gio 16/7 | Barcellona — Park Güell 🏆 + Gòtic | — | giornata |
 | 3 | ven 17/7 | 🚄 sosta Tarragona 🏆 → Valencia | treno ~3h | Tarragona 3h |
@@ -29,7 +31,7 @@
 | 21 | mar 4/8 | Vejer mattina → Cádice pomeriggio + tramonto Caleta (notte) | 59 km · 0h52 | borgo + città |
 | 22 | mer 5/8 | Cádice + Itálica ★ → Siviglia, **riconsegna auto** (sera Triana) | 142 km · 1h54 | città + rovine 2h |
 | 23 | gio 6/8 | Siviglia a piedi: Cattedrale 🏆 + Real Alcázar 🏆 ⚠️prenotare | — | giornata piena |
-| 24 | ven 7/8 | Siviglia: Plaza de España, volo a qualsiasi ora 🎉 | — | fino al volo |
+| 24 | ven 7/8 | Siviglia: Plaza de España + María Luisa → ✈️ volo 19:15 (aeroporto ~17:15) | — | mattina + pranzo |
 
 ## ⚠️ Prenotazioni urgenti (in ordine)
 1. **Treno BCN→Valencia** — promo Renfe attiva FINO ALL'11 GIUGNO (da €15) su renfe.com
@@ -37,7 +39,7 @@
 3. **Caminito del Rey** (G.14, MARTEDÌ 28 lug, slot mattina ~11:00) — ⚠️ il lunedì è CHIUSO
 4. **Doñana 4×4** (G.17, ven 31 lug) + 🐂 **corrida El Puerto sab 1/8** (Servitoro — Morante 4 serate, vola via) + Sagrada/Park Güell (G.1-2) + Alcázar (G.23)
 5. **Auto**: ritiro Valencia G.5 (dom 19/7) → riconsegna Siviglia G.22 (mer 5/8), one-way — 17 giorni, niente parcheggio a Siviglia
-6. Volo ritorno da Siviglia ven 7 ago a QUALSIASI ora (auto già riconsegnata il G.22)
+6. ✈️ **Voli (presi):** andata 14/7 Milano 18:10 → BCN 19:50 · ritorno 7/8 Siviglia **19:15** (essere in aeroporto ~17:15; auto già resa il 5/8, nessun vincolo d'orario auto). Arrivo il 14 sera = **3 notti a Barcellona** (14-15-16), visite invariate dal 15.
 
 ## Tagli definitivi (non recuperati)
 Mijas, Murcia città, Guadalest (resta opzione G.5), Úbeda-Baeza, Huelva costa (La Rábida), Gibilterra, Torcal, Sierra Nevada alta.
