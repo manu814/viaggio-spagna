@@ -118,6 +118,7 @@
       <div class="stat"><span class="n" id="kmstat">…</span><span class="l">km auto</span></div>
       <div class="stat"><span class="n">24</span><span class="l">notti</span></div>
     </div>
+    <a href="programma.html" style="display:inline-block;margin-top:13px;font-family:'Fraunces',serif;font-weight:600;font-size:13px;text-decoration:none;color:#fff;background:var(--accent);border:2.5px solid var(--ink);padding:8px 15px;box-shadow:4px 4px 0 rgba(43,33,24,.3)">📋 Programma giorno-per-giorno →</a>
   </header>
   <div id="phases"></div>
   <footer>
@@ -223,6 +224,21 @@ function driveFor(n){
   return '🚗 '+km+' km · '+fmtMin(min)+(flag==='r'?' a/r':'');
 }
 
+// Tempi Google per singola TRATTA (giorni con più segmenti disegnati); [km, 'tempo']
+const GSEG = {
+  6:[[220,'2h41'],[212,'2h35']],
+  9:[[56,'1h05'],[100,'1h27'],[76,'58 min']],
+  12:[[83,'1h26'],[58,'53 min']]
+};
+const _legIdx = {};
+function legTip(r){
+  if(r.f==='t') return '🚄 ~3h di treno';
+  const i = (_legIdx[r.d]||0); _legIdx[r.d] = i+1;
+  const seg = GSEG[r.d] && GSEG[r.d][i];
+  if(seg) return '🚗 '+seg[0]+' km · '+seg[1];   // tratta singola
+  return driveFor(r.d) || ('🚗 '+r.km+' km');     // giorni a tratta unica = totale giornata
+}
+
 // Percorsi reali (OSRM)
 ROUTES.forEach(r=>{
   const train = r.f==='t';
@@ -230,9 +246,7 @@ ROUTES.forEach(r=>{
     color: train ? '#2B2118' : phaseOf(r.d).color,
     weight: 4, opacity: .85,
     dashArray: train ? '2 9' : null
-  }).addTo(map).bindTooltip(
-    (driveFor(r.d) || (train?'🚄 treno':'🚗 in auto'))+' · giorno '+r.d,
-    {sticky:true});
+  }).addTo(map).bindTooltip(legTip(r), {sticky:true});
 });
 
 (()=>{

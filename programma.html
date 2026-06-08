@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programma · Sur de España — 24 giorni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#FAF3E3; --paper2:#F3E8CF; --ink:#2B2118; --ink-soft:#6B5D4F; --accent:#B23A48; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Karla',sans-serif;color:var(--ink);background:var(--paper);
+    background-image:radial-gradient(rgba(43,33,24,.05) 1px, transparent 1px);background-size:14px 14px;
+    line-height:1.5;padding:0 0 60px}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px}
+
+  header{padding:34px 0 22px;border-bottom:3px solid var(--ink);margin-bottom:8px}
+  .kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  h1{font-family:'Fraunces',serif;font-weight:900;font-size:46px;line-height:.98;margin:8px 0 6px}
+  h1 em{font-style:italic;font-weight:400;color:#D96C2F}
+  .sub{font-size:14px;color:var(--ink-soft)}
+  .sub b{color:var(--ink)}
+  .stats{display:flex;gap:0;margin-top:16px;border:2px solid var(--ink);max-width:520px}
+  .stat{flex:1;text-align:center;padding:8px 2px;border-right:2px solid var(--ink)}
+  .stat:last-child{border-right:none}
+  .stat .n{font-family:'Fraunces',serif;font-weight:900;font-size:19px;display:block}
+  .stat .l{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .toplinks{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+  .btn{display:inline-block;font-family:'Fraunces',serif;font-weight:600;font-size:14px;text-decoration:none;
+    color:var(--ink);background:var(--paper);border:2.5px solid var(--ink);padding:8px 16px;
+    box-shadow:4px 4px 0 rgba(43,33,24,.3);transition:transform .1s,box-shadow .1s}
+  .btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 rgba(43,33,24,.35)}
+  .btn.accent{background:var(--accent);color:#fff;border-color:var(--ink)}
+
+  .box{border:2.5px solid var(--ink);background:var(--paper2);padding:14px 18px;margin:22px 0;
+    box-shadow:5px 5px 0 rgba(43,33,24,.25)}
+  .box h3{font-family:'Fraunces',serif;font-size:16px;margin-bottom:6px}
+  .box ol{margin:0 0 0 18px;font-size:13.5px;line-height:1.7}
+  .box .small{font-size:12px;color:var(--ink-soft);margin-top:6px}
+
+  .phase-h{font-family:'Fraunces',serif;font-weight:900;font-size:13px;letter-spacing:.16em;
+    text-transform:uppercase;margin:34px 0 14px;padding:7px 0 7px 16px;border-left:9px solid var(--ph);color:var(--ink)}
+
+  .day{display:flex;gap:16px;padding:16px 0;border-top:1.5px dashed rgba(43,33,24,.28)}
+  .badge{flex:none;width:42px;height:42px;border-radius:50%;border:2.5px solid var(--ink);
+    background:var(--ph);color:#fff;font-family:'Fraunces',serif;font-weight:900;font-size:17px;
+    display:flex;align-items:center;justify-content:center;box-shadow:3px 3px 0 rgba(43,33,24,.4)}
+  .body{flex:1;min-width:0}
+  .d-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .d-date{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+  .d-tit{font-family:'Fraunces',serif;font-weight:900;font-size:20px;line-height:1.1}
+  .d-meta{display:flex;gap:8px;flex-wrap:wrap;margin:7px 0 6px}
+  .chip{font-size:12px;font-weight:700;border:1.5px solid var(--ink);padding:2px 9px;border-radius:20px;background:var(--paper)}
+  .chip.bed{background:var(--ink);color:var(--paper)}
+  .chip.warn{border-color:var(--accent);color:var(--accent)}
+  .d-act{font-size:14px;line-height:1.55}
+  .d-note{font-size:12.5px;color:#8a3a2a;margin-top:7px;padding-left:14px;border-left:3px solid var(--accent)}
+
+  footer{margin-top:40px;padding-top:18px;border-top:3px solid var(--ink);font-size:12.5px;color:var(--ink-soft)}
+  footer a{color:var(--accent);font-weight:700}
+
+  @media(max-width:560px){ h1{font-size:34px} .day{gap:11px} .badge{width:36px;height:36px;font-size:15px} }
+  @media print{ body{background:#fff} .btn{display:none} .day{break-inside:avoid} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">14 luglio → 7 agosto 2026 · v8</div>
+    <h1>Sur de España <em>· programma</em></h1>
+    <div class="sub"><b>Barcellona → Siviglia</b> · giorno per giorno: tappe, orari, attività e dove si dorme.</div>
+    <div class="stats">
+      <div class="stat"><span class="n">24</span><span class="l">notti</span></div>
+      <div class="stat"><span class="n">14</span><span class="l">basi</span></div>
+      <div class="stat"><span class="n">~2.360</span><span class="l">km</span></div>
+      <div class="stat"><span class="n">~33h</span><span class="l">guida</span></div>
+    </div>
+    <div class="toplinks">
+      <a class="btn accent" href="index.html">🗺️ Apri la mappa</a>
+      <a class="btn" href="programma_dettagliato.md">📄 Versione testo</a>
+    </div>
+  </header>
+
+  <div class="box">
+    <h3>📌 Da prenotare (in ordine d'urgenza)</h3>
+    <ol>
+      <li>⏰ <b>Treno Renfe</b> BCN→Valencia — promo scade <b>11/6</b></li>
+      <li>Alhambra (24/7) · Caminito del Rey (mar 28/7) · Doñana 4×4 (31/7) · Real Alcázar (6/8)</li>
+      <li>Corrida El Puerto (1/8, Servitoro) · Sagrada Família + Park Güell (15-16/7)</li>
+      <li>Auto one-way: ritiro Valencia 19/7 → riconsegna Siviglia 5/8</li>
+      <li>14 alloggi — i 4 scarsi per primi: Camping Tau (San José), Cascapeñas (Capileira), La Fonda (El Rocío), camping Tarifa</li>
+    </ol>
+    <div class="small">⏰ = sveglia presto: G.5 · G.14 · G.15 · G.17 · G.19 · G.22. Tutto il resto = ritmo lento.</div>
+  </div>
+
+  <div id="days"></div>
+
+  <footer>
+    Benzina ~€200 (Kia Picanto) · caselli €0-8 (solo AP-7 Málaga-Marbella, evitabile) · tempi di guida reali da Google Maps.<br>
+    🗺️ Mappa interattiva: <a href="index.html">index.html</a> · 📄 <a href="programma_dettagliato.md">versione markdown</a>
+  </footer>
+</div>
+
+<script>
+const PH = ["#E8A33D","#D96C2F","#B23A48","#3E8E7E","#7A9A4B","#4E5D94","#1F6FB2","#A24B8E"];
+const PHN = ["Barcellona e Valencia","Costa Blanca → Cabo de Gata","Deserto, Guadix e Granada",
+  "Axarquía, Marbella, Ronda","Córdoba","Doñana e lo sherry","Costa de la Luz, a risalire","Siviglia — gran finale"];
+
+// [n, fase, data, titolo, guida, arrivo, attività, notte, nota]
+const D = [
+[0,0,"mar 14/7","Arrivo a Barcellona","✈️ volo 18:10 → 19:50",null,"Check-in, cena leggera, dormi.","Barcellona (1/3)",null],
+[1,0,"mer 15/7","Barcellona gaudiana",null,null,"Mattina con calma → 16:00 Sagrada Família (prenotata) → 18:30 Hospital de Sant Pau → cena nel quartiere Gràcia.","Barcellona (2/3)","Prenotare la Sagrada Família."],
+[2,0,"gio 16/7","Park Güell + Gòtic",null,null,"9:30 Park Güell (prenotato, col fresco) → 12:00 Casa Batlló / La Pedrera → pomeriggio Barri Gòtic → vermut e tapas.","Barcellona (3/3)","Prenotare il Park Güell."],
+[3,0,"ven 17/7","Tarragona → Valencia","🚄 ~3h treno",null,"~9:00 treno → 10:15 Tarragona (bagagli in consigna): anfiteatro sul mare, Part Alta, cattedrale, Balcó del Mediterrani → ~14:30 treno → 16:30 Valencia → sera nel Barrio del Carmen.","Valencia (1/2)","Treno Renfe: promo entro l'11/6."],
+[4,0,"sab 18/7","Valencia",null,null,"10:00 Lonja della seta → pranzo al Mercado Central → 17:00 Ciutat de les Arts (Calatrava) → 20:30 barca sull'Albufera al tramonto.","Valencia (2/2)",null],
+[5,1,"dom 19/7","Ritiro auto → Cala Granadella","🚗 121 km · 1h35",null,"⏰ 8:30 ritiro auto (sede aperta la domenica) → 10:15 Cala Granadella (se piena: Portitxol) → opz. Guadalest + cascate dell'Algar → sera all'Arenal di Jávea.","Jávea","Granadella di domenica entro le 9, si riempie."],
+[6,1,"lun 20/7","Trasferimento a Cabo de Gata","🚗 433 km · 5h17 ⚠️","~18:30","Giornata lunga di solo viaggio, un bagno a metà: 9:00 partenza → 13:00 Calblanque (parco segreto, bagno + pranzo) → 15:30 riparti → 18:30 San José, check-in e cena.","San José (1/3)",null],
+[7,1,"mar 21/7","Mónsul + Genoveses","🚌 navetta ~15 min",null,"10:30 navetta da San José (d'estate la strada è chiusa alle auto) → le due spiagge iconiche (Mónsul = quella di Indiana Jones), pranzo al sacco → 18:00 rientro → cena a San José.","San José (2/3)",null],
+[8,1,"mer 22/7","Cale nord","🚗 90 km · 1h30 a/r",null,"Gita: ~45 min fino ad Agua Amarga → camminata 30 min → Cala de Enmedio (la più bella, tipo Seychelles) fino alle 17 → rientro, sera a San José.","San José (3/3)",null],
+[9,2,"gio 23/7","Tabernas + Guadix → Granada","🚗 232 km · 3h34","~18:00","9:30 partenza → 11:00 Mini Hollywood (deserto di Tabernas, set western, spettacolo ~12) → pranzo → 15:30 Guadix (case-grotta) → 18:00 Granada.","Granada (1/2)",null],
+[10,2,"ven 24/7","Alhambra",null,null,"⏰ 9:30-13:00 Alhambra (slot prenotato!) → pranzo + siesta → 21:00 Mirador San Nicolás (tramonto sull'Alhambra) → tapas (gratis col drink).","Granada (2/2)","Alhambra: prenotare con mesi d'anticipo."],
+[11,2,"sab 25/7","Las Alpujarras → Capileira","🚗 74 km · 1h26",null,"10:30 partenza → 11:45 Pampaneira → pranzo → Bubión + Trevélez (assaggio jamón) → 18:00 Capileira (1.436 m): tramonto e stelle in quota.","Capileira",null],
+[12,3,"dom 26/7","Frigiliana + Maro → Málaga","🚗 155 km · 2h37","~18:30","9:30 partenza → 11:00 Frigiliana (borgo bianco premiato) + pranzo → 14:30-17:30 spiaggia di Maro → 18:30 Málaga: Alcazaba serale + cena.","Málaga",null],
+[13,3,"lun 27/7","Marbella → Ronda","🚗 120 km · 1h53",null,"Mattina con calma → 12:00 Marbella (casco antiguo + pranzo) → 15:30 salita panoramica A-397 → 16:45 Ronda: Puente Nuevo, discesa nella gola, tramonto.","Ronda","Lunedì il Caminito è chiuso. Pedaggio opz. Málaga-Marbella ~€8 (o costiera gratis)."],
+[14,3,"mar 28/7","Setenil + Caminito → Córdoba","🚗 227 km · 3h29",null,"⏰ 8:00 partenza → 8:30 Setenil (colazione sotto la roccia) → 11:00-14:15 Caminito del Rey (slot prenotato; cappello + acqua) → pranzo a El Chorro → 17:15 Córdoba (sera Judería).","Córdoba (1/2)","Caminito: prenotare, è martedì (lunedì chiuso); sveglia presto."],
+[15,4,"mer 29/7","Córdoba: Mezquita",null,null,"⏰ 8:30-9:30 Mezquita (nei feriali GRATIS e semivuota) → 10-12 Judería e patios → pranzo → siesta vera (40°C+) → 21:00 Puente Romano al tramonto.","Córdoba (2/2)",null],
+[16,4,"gio 30/7","→ El Rocío","🚗 226 km · 2h41","~17:15","10-12 opz. Medina Azahara (città-palazzo del califfo) → pranzo → 14:30 partenza → 17:15 El Rocío: strade di sabbia, cavalli, tramonto sulle marismas.","El Rocío",null],
+[17,5,"ven 31/7","Doñana + Sanlúcar → Jerez","🚗 206 km · 2h37",null,"⏰ 8:30-12:30 tour 4×4 a Doñana (prenotato!) → pranzo a El Rocío → 15:00 partenza → 17:00 Sanlúcar (tramonto, manzanilla + gamberi) → 22:00 tabanco con flamenco a Jerez.","Jerez","Doñana 4×4: prenotare."],
+[18,5,"sab 1/8","Bodega + Corrida → Tarifa","🚗 133 km · 1h54","Tarifa ~23:15","10:00-11:30 bodega (sherry) → pranzo → pomeriggio a El Puerto → ~19:00-21:30 CORRIDA (Morante-Talavante-J.Ortega) → 22:00 partenza verso Tarifa.","Tarifa (1/2)","Biglietti Servitoro. Se la corrida è nocturna (22:00) → dormire a El Puerto."],
+[19,6,"dom 2/8","Baelo Claudia + cetacei","🚗 46 km · 58 min a/r",null,"⏰ 9:30-12 Baelo Claudia (città romana sulla spiaggia di Bolonia) + salita alla duna → pranzo → spiaggia → 17:00 uscita cetacei (2h, delfini quasi garantiti).","Tarifa (2/2)","Baelo solo domenica mattina (estate chiude 15:00, lunedì chiusa)."],
+[20,6,"lun 3/8","Tarifa → Conil → Vejer → Cádice","🚗 141 km · 2h09","Cádice ~20:00","Mattina pigra a Tarifa → 13:00 Conil (pranzo di pescaíto + spiaggia) → 17:30 Vejer (borgo bianco, mura, visita) → 20:00 Cádice, check-in e cena.","Cádice (1/2)",null],
+[21,6,"mar 4/8","Cádice intera",null,null,"Colazione + mercato del pesce → Torre Tavira (camera oscura) → teatro romano (il più antico di Spagna) → pranzo di pesce → pomeriggio in spiaggia → 21:15 tramonto alla Caleta.","Cádice (2/2)",null],
+[22,6,"mer 5/8","Cádice + Itálica → Siviglia","🚗 145 km · 1h45","~15:15","Colazione sul mare → ⏰ 11:00 partenza (Itálica chiude alle 15!) → 13:00-14:30 Itálica (anfiteatro da 25.000 posti) → 15:15 Siviglia: RICONSEGNA AUTO → sera a Triana.","Siviglia (1/2)","Via da Cádice entro le 11:30. Da qui tutto a piedi."],
+[23,7,"gio 6/8","Siviglia monumentale",null,null,"9:30 Real Alcázar (slot prenotato) → pranzo a Santa Cruz → 16:30 Cattedrale + Giralda → sera di tapas.","Siviglia (2/2)","Real Alcázar: prenotare."],
+[24,7,"ven 7/8","Plaza de España → volo",null,null,"Mattina Plaza de España + Parco María Luisa → ultimo pranzo → aeroporto (taxi/bus EA ~25 min, essere lì ~17:15) → ✈️ volo 19:15. 🎉","— (si vola a casa)",null],
+];
+
+const root = document.getElementById('days');
+let curPhase = -1;
+D.forEach(d=>{
+  const [n,ph,date,tit,drive,arr,act,bed,note] = d;
+  if(ph!==curPhase){
+    curPhase = ph;
+    const h = document.createElement('div');
+    h.className='phase-h'; h.style.setProperty('--ph',PH[ph]);
+    h.textContent = 'Fase '+(ph+1)+' · '+PHN[ph];
+    root.appendChild(h);
+  }
+  const el = document.createElement('div');
+  el.className='day'; el.style.setProperty('--ph',PH[ph]);
+  let chips='';
+  if(drive) chips += '<span class="chip">'+drive+'</span>';
+  if(arr) chips += '<span class="chip">🕐 arrivo '+arr+'</span>';
+  chips += '<span class="chip bed">🛏 '+bed+'</span>';
+  el.innerHTML =
+    '<div class="badge">'+n+'</div>'+
+    '<div class="body">'+
+      '<div class="d-top"><span class="d-date">G.'+n+' · '+date+'</span></div>'+
+      '<div class="d-tit">'+tit+'</div>'+
+      '<div class="d-meta">'+chips+'</div>'+
+      '<div class="d-act">'+act+'</div>'+
+      (note?'<div class="d-note">⚠️ '+note+'</div>':'')+
+    '</div>';
+  root.appendChild(el);
+});
+</script>
+</body>
+</html>
