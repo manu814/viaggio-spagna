@@ -37,7 +37,8 @@
 1. ✅ **Treno BCN→Valencia PRESO** — Intercity 00463 ven 17/7, 11:05→14:32, loc. **GZM86V**, coche 9 post. 2C+2D, €90,60 in 2 (tariffa Básico = NON rimborsabile/modificabile). Include Cercanías combinado (RKR6K + KTNM5). ⚠️ È DIRETTO → la sosta a Tarragona NON è in questa tratta (vedi nota sotto)
 2. **Alhambra** (G.10, ven 24 lug) — si esaurisce mesi prima
 3. **Caminito del Rey** (G.14, MARTEDÌ 28 lug, slot mattina ~11:00) — ⚠️ il lunedì è CHIUSO
-4. **Doñana 4×4** (G.17, ven 31 lug) + 🐂 **corrida El Puerto sab 1/8** (Servitoro — Morante 4 serate, vola via) + Sagrada/Park Güell (G.1-2) + Alcázar (G.23)
+4. **Doñana 4×4** (G.17, ven 31 lug) + Sagrada/Park Güell (G.1-2) + Alcázar (G.23)
+4b. 🐂 **COMPRARE BIGLIETTI corrida El Puerto sab 1/8 ore 20:00** (Morante-Talavante-Ortega, tori Álvaro Núñez) — ⏰ il biglietto **SINGOLO** apre in vendita il **26/7** su `circuitostaurinos.es` (o taquilla tel +34 603 654 860). 2 posti in **SOMBRA**. ❌ NON il pacchetto 3 giorni di Servitoro (€95-150 a testa). 📅 Promemoria agenda impostato per il 26/7.
 5. **Auto**: ritiro Valencia G.5 (dom 19/7) → riconsegna Siviglia G.22 (mer 5/8), one-way — 17 giorni, niente parcheggio a Siviglia
 6. ✈️ **Voli (presi):** andata 14/7 Milano 18:10 → BCN 19:50 · ritorno 7/8 Siviglia **19:15** (essere in aeroporto ~17:15; auto già resa il 5/8, nessun vincolo d'orario auto). Arrivo il 14 sera = **3 notti a Barcellona** (14-15-16), visite invariate dal 15.
 
