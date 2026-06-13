@@ -107,10 +107,10 @@ Gita: ~45 min fino ad **Agua Amarga** → camminata 30 min → **Cala de Enmedio
 
 ## FASE 6 · Sherry, corrida, Costa de la Luz
 
-### G.18 · sab 1/8 — Bodega + Corrida → Tarifa · 🚗 133 km · 1h54 · arrivo Tarifa ~23:15
-10:00-11:30 **bodega** (sherry) → pranzo → pomeriggio a El Puerto → **~19:00-21:30 CORRIDA** (Morante-Talavante-J.Ortega) → 22:00 partenza → 23:15 Tarifa.
+### G.18 · sab 1/8 — Bodega + Corrida → Tarifa · 🚗 133 km · 1h54 · arrivo Tarifa ~23:45
+10:00-11:30 **bodega** (sherry) → pranzo → pomeriggio a El Puerto → **20:00-22:30 CORRIDA** (Morante-Talavante-J.Ortega, tori Álvaro Núñez) → 22:45 partenza → ~23:45 Tarifa.
 🛏 **Tarifa** (1/2)
-*⚠️ Biglietti Servitoro. Se la corrida è "nocturna" (22:00) → dormire a El Puerto.*
+*⚠️ Orario confermato 20:00 (cartel ufficiale Servitoro). Online vendono solo il pacchetto 3 giorni 31/7+1/8+2/8 (da €94,90 sol / €152 sombra a testa): per il solo 1/8 → taquilla in plaza i giorni prima, o ricontrollare Servitoro più avanti per il biglietto singolo.*
 
 ### G.19 · dom 2/8 — Baelo Claudia + cetacei · 🚗 46 km · 58 min a/r
 ⏰ **9:30-12 Baelo Claudia** (città romana sulla spiaggia di Bolonia; domenica mattina = unico slot, d'estate chiude alle 15 e lunedì è chiusa) + salita alla **duna** → pranzo → spiaggia → **17:00 uscita cetacei** (2h, delfini quasi garantiti).

@@ -25,7 +25,7 @@
 | 15 | mer 29/7 | Córdoba: Mezquita 🏆 (feriali 8:30-9:30 GRATIS) + patios + tramonto | — | giornata piena |
 | 16 | gio 30/7 | (opz. Medina Azahara 🏆) → El Rocío (notte) | 226 km · 2h41 | opz. 2h + viaggio |
 | 17 | ven 31/7 | **Doñana 🏆 ★** ⚠️prenotare + Sanlúcar ★ tramonto → Jerez (flamenco, notte) | 206 km · 2h37 | 4×4 4h + sera |
-| 18 | sab 1/8 | Jerez (bodega) → 🐂 **CORRIDA a El Puerto** ~19 (Morante-Talavante-J.Ortega) → Tarifa ore 23 | 133 km · 1h54 | bodega + corrida |
+| 18 | sab 1/8 | Jerez (bodega) → 🐂 **CORRIDA a El Puerto 20:00** (Morante-Talavante-J.Ortega, tori Álvaro Núñez) → Tarifa ~23:45 | 133 km · 1h54 | bodega + corrida |
 | 19 | dom 2/8 | Baelo Claudia mattina ⚠️ + duna → Tarifa pom. + cetacei (notte Tarifa) | 46 km · 58 min a/r | rovine 3h + mare |
 | 20 | lun 3/8 | Tarifa lenta → Conil (pranzo+mare) → Vejer (visita) → **Cádice** (notte) | 141 km · 2h09 | mare ½g + 2 borghi |
 | 21 | mar 4/8 | Cádice intera: mercato, Torre Tavira, teatro romano, Caleta al tramonto | — | città intera |
