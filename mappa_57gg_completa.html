@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sur de España — 57 giorni · Barcellona → Siviglia</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF3E3; --paper2:#F3E8CF; --ink:#2B2118; --ink-soft:#6B5D4F;
+    --accent:#B23A48;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{font-family:'Karla',sans-serif;color:var(--ink);background:var(--paper);display:flex;overflow:hidden}
+
+  /* ---------- SIDEBAR ---------- */
+  #side{width:340px;min-width:340px;height:100%;overflow-y:auto;background:var(--paper);
+    border-right:3px solid var(--ink);position:relative;z-index:1001;
+    background-image:radial-gradient(rgba(43,33,24,.05) 1px, transparent 1px);background-size:14px 14px}
+  #side::-webkit-scrollbar{width:9px}
+  #side::-webkit-scrollbar-thumb{background:var(--ink);border-radius:0}
+  #side::-webkit-scrollbar-track{background:var(--paper2)}
+
+  header{padding:26px 22px 18px;border-bottom:3px solid var(--ink);background:var(--paper)}
+  .kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  h1{font-family:'Fraunces',serif;font-weight:900;font-size:38px;line-height:.98;margin:8px 0 4px}
+  h1 em{font-style:italic;font-weight:400;color:#D96C2F}
+  .sub{font-size:13px;color:var(--ink-soft);line-height:1.45}
+  .sub b{color:var(--ink)}
+  .stats{display:flex;gap:0;margin-top:14px;border:2px solid var(--ink)}
+  .stat{flex:1;text-align:center;padding:7px 2px;border-right:2px solid var(--ink)}
+  .stat:last-child{border-right:none}
+  .stat .n{font-family:'Fraunces',serif;font-weight:900;font-size:20px;display:block}
+  .stat .l{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+
+  .phase{border-bottom:2px solid var(--ink)}
+  .phase-head{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;
+    user-select:none;background:var(--paper);transition:background .15s}
+  .phase-head:hover{background:var(--paper2)}
+  .ph-dot{width:16px;height:16px;border:2px solid var(--ink);transform:rotate(45deg);flex:none}
+  .ph-name{font-family:'Fraunces',serif;font-weight:600;font-size:15px;flex:1;line-height:1.1}
+  .ph-days{font-size:11px;color:var(--ink-soft);letter-spacing:.06em}
+  .ph-arrow{font-size:11px;transition:transform .2s}
+  .phase.open .ph-arrow{transform:rotate(90deg)}
+  .phase-body{display:none}
+  .phase.open .phase-body{display:block}
+
+  .day{display:flex;gap:11px;padding:9px 16px 9px 18px;cursor:pointer;border-top:1px dashed rgba(43,33,24,.3);transition:background .12s}
+  .day:hover{background:rgba(43,33,24,.06)}
+  .day.active{background:var(--ink);color:var(--paper)}
+  .day.active .d-meta{color:var(--paper2)}
+  .d-num{font-family:'Fraunces',serif;font-weight:900;font-size:15px;width:26px;height:26px;flex:none;
+    display:flex;align-items:center;justify-content:center;border-radius:50%;color:#fff;margin-top:1px}
+  .d-tit{font-weight:700;font-size:13.5px;line-height:1.25}
+  .d-tit .pin{font-size:10px}
+  .d-meta{font-size:11px;color:var(--ink-soft);margin-top:1px;line-height:1.35}
+
+  footer{padding:14px 18px 22px;font-size:11px;color:var(--ink-soft);line-height:1.6}
+  footer b{color:var(--accent)}
+
+  /* ---------- MAP ---------- */
+  #map{flex:1;height:100%;background:#CDE3E8}
+  .leaflet-container{font-family:'Karla',sans-serif}
+
+  .day-marker{display:flex;align-items:center;justify-content:center;border-radius:50%;
+    color:#fff;font-family:'Fraunces',serif;font-weight:900;font-size:13px;
+    border:2.5px solid var(--ink);box-shadow:3px 3px 0 rgba(43,33,24,.45);
+    transition:transform .12s}
+  .day-marker:hover{transform:scale(1.18)}
+  .sub-dot{border-radius:50%;border:2px solid var(--ink);box-shadow:1.5px 1.5px 0 rgba(43,33,24,.4)}
+
+  .leaflet-popup-content-wrapper{background:var(--paper);color:var(--ink);border:3px solid var(--ink);
+    border-radius:0;box-shadow:6px 6px 0 rgba(43,33,24,.35)}
+  .leaflet-popup-tip{background:var(--ink)}
+  .leaflet-popup-content{margin:14px 16px;line-height:1.45;width:auto!important;max-width:270px}
+  .pp-day{font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
+  .pp-tit{font-family:'Fraunces',serif;font-weight:900;font-size:19px;line-height:1.05;margin:3px 0 6px}
+  .pp-desc{font-size:12.5px}
+  .pp-meta{margin-top:8px;padding-top:7px;border-top:1.5px dashed rgba(43,33,24,.4);font-size:11px;color:var(--ink-soft)}
+  .pp-meta span{margin-right:10px}
+  .leaflet-popup-close-button{font-size:18px!important;color:var(--ink)!important;top:4px!important;right:6px!important}
+
+  .leaflet-control-zoom a{background:var(--paper)!important;color:var(--ink)!important;
+    border:2px solid var(--ink)!important;border-radius:0!important;font-weight:700}
+  .leaflet-control-attribution{background:rgba(250,243,227,.85)!important;font-size:9px!important}
+
+  .map-badge{position:absolute;top:14px;right:14px;z-index:1000;background:var(--paper);
+    border:3px solid var(--ink);box-shadow:5px 5px 0 rgba(43,33,24,.35);padding:9px 16px;
+    font-family:'Fraunces',serif;font-style:italic;font-size:14px;pointer-events:none}
+  .map-badge b{font-style:normal;font-weight:900;color:var(--accent)}
+
+  @media (max-width:760px){
+    body{flex-direction:column}
+    #side{width:100%;min-width:0;height:45%;border-right:none;border-bottom:3px solid var(--ink)}
+    #map{height:55%}
+    h1{font-size:30px}
+  }
+</style>
+</head>
+<body>
+
+<aside id="side">
+  <header>
+    <div class="kicker">15 luglio → 9 settembre</div>
+    <h1>Sur de<br>España <em>en coche</em></h1>
+    <div class="sub"><b>Barcellona → Siviglia</b> · TUTTO DENTRO + i 15 UNESCO 🏆<br>ritmo lento, spiagge per bene, posti veri.</div>
+    <div class="stats">
+      <div class="stat"><span class="n">57</span><span class="l">giorni</span></div>
+      <div class="stat"><span class="n">12</span><span class="l">fasi</span></div>
+      <div class="stat"><span class="n">~3100</span><span class="l">km</span></div>
+    </div>
+  </header>
+  <div id="phases"></div>
+  <footer>
+    📌 = chat originale · ➕ = aggiunta · 🏆 = UNESCO<br>
+    <b>Prenotare subito:</b> Alhambra (G.26), Caminito del Rey (G.34), Sagrada Família + Park Güell (G.1-2), Doñana 4×4 (G.52).
+  </footer>
+</aside>
+
+<div id="map">
+  <div class="map-badge">clicca un giorno o un marker → <b>dettagli</b></div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const PHASES = [
+  {name:"Barcellona → València",         color:"#E8A33D", range:"G.1–8"},
+  {name:"Costa Blanca",                  color:"#D96C2F", range:"G.9–14"},
+  {name:"Murcia",                        color:"#A0522D", range:"G.15–17"},
+  {name:"Almería e l'interno",           color:"#B23A48", range:"G.18–24"},
+  {name:"Granada e Sierra Nevada",       color:"#8E2F5D", range:"G.25–28"},
+  {name:"Costa Tropical e Axarquía",     color:"#3E8E7E", range:"G.29–32"},
+  {name:"Antequera, Iznájar, Córdoba",   color:"#7A9A4B", range:"G.33–37"},
+  {name:"Ronda e pueblos blancos",       color:"#936639", range:"G.38–40"},
+  {name:"Costa del Sol e Gibilterra",    color:"#2F7E8C", range:"G.41–44"},
+  {name:"Costa de la Luz",               color:"#1F6FB2", range:"G.45–49"},
+  {name:"Jerez, Doñana, Huelva",         color:"#4E5D94", range:"G.50–54"},
+  {name:"Siviglia — gran finale",        color:"#A24B8E", range:"G.55–57"},
+];
+
+// [giorno, data, fase(0-11), lat, lon, titolo, descrizione, guida, durata, pin]
+const DAYS = [
+[1,"mer 15 lug",0,41.4036,2.1744,"Barcellona — Sagrada Família 🏆","La basilica di Gaudí, UNESCO (⚠️ prenotare) + Hospital de Sant Pau. Sera a Gràcia. Niente auto: piedi e metro.","—","2h + 1h30","➕"],
+[2,"gio 16 lug",0,41.3851,2.1734,"Barcellona — Park Güell 🏆 + Gòtic","Park Güell al mattino (prenotare), Casa Batlló e La Pedrera, Palau de la Música, Barri Gòtic.","—","giornata","➕"],
+[3,"ven 17 lug",0,41.115,1.259,"Sitges + Tarragona 🏆","Ritiro auto. Sitges, borgo di mare elegante, poi Tarraco UNESCO: anfiteatro romano SUL mare + acquedotto.","🚗 40min + 50min","1h30 + 2h","➕"],
+[4,"sab 18 lug",0,40.720,0.730,"Delta dell'Ebro","Lagune, risaie e fenicotteri alla foce dell'Ebro; spiaggia-lingua del Trabucador (6 km).","🚗 1h","mezza giornata","➕"],
+[5,"dom 19 lug",0,40.620,-0.100,"Morella + Valltorta 🏆","Città murata medievale su un cono di roccia, poi le grotte della Valltorta: arte rupestre levantina UNESCO. Sera a Peñíscola.","🚗 2h50 a tappe","2h + 1h30","➕"],
+[6,"lun 20 lug",0,39.676,-0.278,"Peñíscola + Sagunto → Valencia","Castello templare e spiaggia al mattino (set del Trono di Spade); il castello iberico-romano di Sagunto, 1 km di mura.","🚗 1h40","castello 1h30","➕"],
+[7,"mar 21 lug",0,39.475,-0.376,"Valencia 🏆","Lonja de la Seda UNESCO, Mercado Central, centro gotico. Paella vera a pranzo, sera nel Barrio del Carmen.","—","2–3h centro","➕"],
+[8,"mer 22 lug",0,39.430,-0.350,"Ciutat de les Arts + Albufera","Il complesso futuristico di Calatrava (2h) e tramonto in barca sulla laguna dov'è nata la paella.","—","giornata lenta","➕"],
+[9,"gio 23 lug",1,38.838,0.153,"Dénia + Cova Tallada","Grotta scavata nel mare ai piedi del Montgó: si raggiunge a nuoto o in kayak. Accesso contingentato in estate, prenotare.","🚗 1h10","escursione 3h","➕"],
+[10,"ven 24 lug",1,38.737,0.205,"Cala Granadella (Jávea)","Caletta di ghiaia bianca tra le pinete, tra le più belle di Spagna + miradores di Jávea. Entro le 10.","🚗 25min","mezza giornata piena","➕"],
+[11,"sab 25 lug",1,38.677,-0.198,"Guadalest + Fonts de l'Algar","Borgo-castello incastonato nella roccia sopra un lago turchese + bagno nelle piscine naturali delle cascate.","🚗 50min","1h30 + 2h","➕"],
+[12,"dom 26 lug",1,38.636,0.068,"Calpe + Altea","Salita al Peñón d'Ifach, rupe di 330 m sul mare (presto). Pomeriggio nel borgo bianco di Altea.","🚗 40min","Peñón 2h + Altea 1h30","➕"],
+[13,"lun 27 lug",1,38.270,-0.697,"Alicante + Elche 🏆","Castello di Santa Bárbara sulla rupe, poi il Palmeral di Elche: 200.000 palme, UNESCO.","🚗 50min + 25min","1h30 + 2h","➕"],
+[14,"mar 28 lug",1,38.166,-0.479,"Isola di Tabarca","Riserva marina raggiungibile in barca da Santa Pola: snorkeling e villaggio fortificato minuscolo.","🚗 20min + barca","giornata","➕"],
+[15,"mer 29 lug",2,38.005,-0.730,"Laguna rosa + Orihuela → Murcia","La laguna ROSA di Torrevieja coi fenicotteri, poi Orihuela. Sera di tapas a Murcia.","🚗 1h35 a tappe","1h + 1h","➕"],
+[16,"gio 30 lug",2,37.984,-1.130,"Murcia + Sierra Espuña","Cattedrale barocca e centro, poi la montagna verde di Murcia: boschi e miradores. Sera a Cartagena.","🚗 1h45 a tappe","1h30 + 2h","➕"],
+[17,"ven 31 lug",2,37.600,-0.720,"Cartagena + Calblanque","Teatro romano del I secolo scoperto sotto le case, poi le spiagge selvagge del parco di Calblanque.","🚗 30min","1h30 + spiaggia ½g","➕"],
+[18,"sab 1 ago",3,37.140,-1.851,"Bolnuevo + Cabo Cope → Mojácar","Rocce erose 'scolpite', costa selvaggia di Águilas, borgo bianco-moresco di Mojácar. Arrivo ad Agua Amarga, base 5 notti.","🚗 2h40 a tappe","1h + 1h30","➕"],
+[19,"dom 2 ago",3,36.731,-2.147,"Mónsul + Genoveses + Salinas","Le spiagge-icona di Cabo de Gata: sabbia chiara, dune e lava nera (Mónsul è quella di Indiana Jones). Tramonto coi fenicotteri alle Salinas.","🚗 30min","giornata intera","📌"],
+[20,"lun 3 ago",3,36.952,-1.927,"Cala de Enmedio","Solo 30 min a piedi da Agua Amarga: rocce bianche levigate e mare turchese. Poi miniere d'oro di Rodalquilar.","a piedi","mezza giornata","📌"],
+[21,"mar 4 ago",3,36.906,-1.976,"Cala San Pedro","Raggiungibile solo a piedi (1h da Las Negras) o in barca: sorgente d'acqua dolce, rovine e comunità hippie.","a piedi / barca","giornata","➕"],
+[22,"mer 5 ago",3,36.948,-1.898,"Playa de los Muertos + Níjar","1 km di ghiaia bianca, l'acqua più trasparente d'Andalusia. Poi il borgo delle ceramiche.","🚗 20min","spiaggia ½g + 1h","📌"],
+[23,"gio 6 ago",3,36.987,-2.422,"Alcazaba di Almería + Tabernas","La 2ª fortezza araba di Spagna, poi i set western di Mini Hollywood nell'unico deserto d'Europa. Notte in casa-grotta a Guadix.","🚗 2h20 a tappe","1h30 + 3h","➕"],
+[24,"ven 7 ago",3,38.013,-3.371,"Úbeda + Baeza 🏆","Le città gemelle del Rinascimento andaluso, UNESCO. Fuori criterio-costa ma dentro per regola UNESCO. Sera a Granada, base 4 notti.","🚗 3h a tappe","2h + 1h30","➕"],
+[25,"sab 8 ago",4,37.095,-3.385,"Sierra Nevada + Los Cahorros","Pico Veleta al mattino: laghi glaciali a 2.500+ m con vista fino al mare. Pomeriggio la gola coi ponti sospesi (Monachil).","🚗 45min","½ g + 2h","📌"],
+[26,"dom 9 ago",4,37.176,-3.588,"Granada — Alhambra 🏆","Palazzo-fortezza nasride del '300: cortili, fontane, Generalife. ⚠️ PRENOTARE MESI PRIMA. Sera lungo il Darro.","—","3–4h","📌"],
+[27,"lun 10 ago",4,36.961,-3.358,"Las Alpujarras","Villaggi moreschi sulla Sierra: Pampaneira, Bubión, Capileira, Trevélez (jamón) e Soportújar, il paese delle streghe.","🚗 1h15 a tratta","giornata (day-trip)","📌"],
+[28,"mar 11 ago",4,37.181,-3.592,"Albaicín 🏆 + Sacromonte","Quartiere arabo UNESCO, tramonto sull'Alhambra dal Mirador San Nicolás. Sera: zambra flamenca nelle grotte gitane.","—","giornata lenta","📌"],
+[29,"mer 12 ago",5,36.745,-3.587,"Salobreña + Cantarriján + La Herradura","Borgo bianco col castello sopra il mare, la caletta tra le falesie e snorkeling a Cerro Gordo.","🚗 50min","borgo 1h30 + spiagge ½g","➕"],
+[30,"gio 13 ago",5,36.789,-3.895,"Frigiliana + Cueva de Nerja","Il borgo più bello d'Andalusia (vicoli moreschi) + la grotta con la colonna più grande del mondo. Sera al Balcón de Europa.","🚗 30min","2h + 1h30","➕"],
+[31,"ven 14 ago",5,36.764,-3.886,"Río Chillar + Maro","Trekking DENTRO il fiume: si cammina nell'acqua tra gole strette — perfetto col caldo, partire presto. Pomeriggio spiaggia di Maro.","a piedi","4–5h + spiaggia","➕"],
+[32,"sab 15 ago",5,36.721,-4.421,"Málaga + Cueva del Tesoro + Gibralfaro","La grotta marina di Rincón, poi Málaga: Alcazaba, castello di Gibralfaro (la vista migliore), museo Picasso. Ferragosto in città.","🚗 50min","giornata","📌"],
+[33,"dom 16 ago",6,36.954,-4.544,"Torcal 🏆 + Fuente de Piedra","Rocce calcaree surreali (UNESCO col sito dei dolmen) + laguna dei fenicotteri a 20 min.","🚗 50min","1h30 + 1h30","📌"],
+[34,"lun 17 ago",6,36.932,-4.789,"Caminito del Rey + dolmen 🏆","Passerella spettacolare appesa a 100 m sulle pareti della gola. ⚠️ Prenotare appena aprono le date. + dolmen UNESCO.","🚗 30min","3h + dolmen 1h","📌"],
+[35,"mar 18 ago",6,37.258,-4.308,"Iznájar","Borgo bianco arroccato sul lago artificiale più grande dell'Andalusia; spiaggia di Valdearenas sul lago.","🚗 50min","borgo 1h30 + lago ½g","📌"],
+[36,"mer 19 ago",6,37.879,-4.779,"Córdoba — Mezquita 🏆","La moschea-cattedrale con 856 colonne a strisce rosse e bianche. Judería, patios fioriti, Puente Romano al tramonto.","🚗 1h15","Mezquita 2h + centro 2h","📌"],
+[37,"gio 20 ago",6,37.885,-4.830,"Córdoba + Medina Azahara 🏆","Alcázar de los Reyes e le rovine della città-palazzo califfale del X secolo, UNESCO. Agosto rovente: siesta vera.","navetta","1h30 + 2h30","➕"],
+[38,"ven 21 ago",7,36.864,-5.181,"Setenil de las Bodegas + Olvera","Case costruite SOTTO la roccia, strade-grotta; poi Olvera col castello sul crinale. Sera a Ronda.","🚗 2h + 30min","1h30 + 1h","➕"],
+[39,"sab 22 ago",7,36.742,-5.167,"Ronda","Il pueblo blanco più famoso: la gola del Tajo (100 m) col Puente Nuevo del '700, baños árabes, arena.","🚗 30min","2–3h + sera","📌"],
+[40,"dom 23 ago",7,36.840,-5.391,"Zahara de la Sierra + Grazalema","Borgo bianco sul lago turchese, la Garganta Verde con gli avvoltoi e Grazalema, il cuore verde d'Andalusia.","🚗 30min a tratta","giornata","➕"],
+[41,"lun 24 ago",8,36.625,-5.170,"Júzcar + Mijas Pueblo","Il paese blu dei Puffi, poi discesa alla costa: Mijas, borgo bianco panoramico. Notte Costa del Sol.","🚗 40min + 1h20","1h30 + 2h","📌"],
+[42,"mar 25 ago",8,36.510,-4.886,"Marbella + Colomares + Cabopino","Il castello-mosaico di Colombo a Benalmádena, il casco antiguo di Marbella (Plaza de los Naranjos), le dune di Cabopino. Puerto Banús.","🚗 45min a tappe","giornata","➕"],
+[43,"mer 26 ago",8,36.318,-5.451,"Casares + Castellar de la Frontera","Il borgo 'a cascata' di Casares e il paese abitato DENTRO un castello, con vista su Gibilterra.","🚗 1h30 a tappe","1h30 + 1h30","➕"],
+[44,"gio 27 ago",8,36.140,-5.353,"Gibilterra + Gorham's Cave 🏆","La Rocca con le scimmie, le gallerie del Grande Assedio, Europa Point; le grotte dei Neanderthal UNESCO (belvedere). Documento alla frontiera.","🚗 30min","mezza giornata piena","📌"],
+[45,"ven 28 ago",9,36.013,-5.604,"Tarifa","La punta sud d'Europa, dove Atlantico e Mediterraneo si incontrano: spiagge infinite, kite, opzione cetacei nello Stretto.","🚗 30min","spiaggia ½g + cetacei 2h","📌"],
+[46,"sab 29 ago",9,36.089,-5.774,"Bolonia + Baelo Claudia + Zahara","La città romana intera sulla spiaggia, la duna gigante di Bolonia e l'atún rojo di Zahara de los Atunes.","🚗 20min","rovine 1h + spiaggia","📌"],
+[47,"dom 30 ago",9,36.187,-6.032,"Caños de Meca + Trafalgar + El Palmar","Spiagge libere sotto le pinete, il faro del capo della battaglia di Trafalgar, tramonto tra i surfisti.","🚗 40min","giornata di mare","➕"],
+[48,"lun 31 ago",9,36.252,-5.965,"Vejer + Conil","Pueblo blanco arroccato a 10 min dal mare, poi la spiaggia atlantica enorme di Conil.","🚗 20min","1h30 + spiaggia ½g","📌"],
+[49,"mar 1 set",9,36.529,-6.293,"Cádice","Forse la città più antica d'Europa (3.000 anni): mercato del pesce, Torre Tavira, il teatro romano più antico di Spagna, La Caleta al tramonto.","🚗 45min","giornata","📌"],
+[50,"mer 2 set",10,36.685,-6.126,"Jerez + Arcos de la Frontera","Sherry in bodega, pomeriggio ad Arcos sullo sperone. Sera: flamenco vero nei tabancos (patrimonio immateriale UNESCO).","🚗 35min + 30min","bodega 1h30 + Arcos 1h30","📌"],
+[51,"gio 3 set",10,36.778,-6.353,"Sanlúcar de Barrameda","Manzanilla in bodega, langostinos e tramonto sulla foce del Guadalquivir con Doñana di fronte.","🚗 45min","giornata lenta","➕"],
+[52,"ven 4 set",10,37.048,-6.566,"Doñana 🏆 + El Rocío","Tour 4×4 nella riserva più grande d'Europa, UNESCO (lince, fenicotteri, dune mobili). ⚠️ Prenotare. Poi El Rocío e bagno a Matalascañas.","🚗 1h50 (via Siviglia)","4h + 1h","📌"],
+[53,"sab 5 set",10,37.211,-6.892,"Cuesta Maneli + Mazagón + La Rábida","Passerella tra le dune fino alla spiaggia vergine, poi il monastero da cui partì Colombo, con le caravelle.","🚗 1h a tappe","spiaggia ½g + 2h","📌"],
+[54,"dom 6 set",10,37.221,-7.128,"Flecha del Rompido + Odiel + Niebla","La lingua di sabbia di 12 km (in barca), i fenicotteri delle Marismas del Odiel e le mura medievali di Niebla. Sera a Siviglia.","🚗 2h a tappe","giornata","➕"],
+[55,"lun 7 set",11,37.444,-6.045,"Itálica","L'anfiteatro romano da 25.000 posti a 15 min da Siviglia, patria degli imperatori Traiano e Adriano. Sera a Triana.","🚗 50min","2h","➕"],
+[56,"mar 8 set",11,37.386,-5.992,"Siviglia — Cattedrale 🏆","La cattedrale gotica più grande del mondo + Giralda e l'Archivo de Indias (completa il sito UNESCO). Santa Cruz.","—","2h + 1h30","📌"],
+[57,"mer 9 set",11,37.393,-5.990,"Siviglia — Alcázar 🏆 · FINE","Real Alcázar (⚠️ prenotare), Plaza de España, Metropol Parasol al tramonto. Riconsegna auto. 🎉","—","giornata finale","📌"],
+];
+
+// Sotto-tappe (puntini piccoli)
+const SUBS = [
+[0,41.4145,2.1527,"Park Güell 🏆"],
+[0,41.3917,2.1650,"Casa Batlló / La Pedrera 🏆"],
+[0,41.4114,2.1742,"Hospital de Sant Pau 🏆"],
+[0,41.237,1.806,"Sitges"],
+[0,40.400,0.017,"Grotte della Valltorta — arte rupestre 🏆"],
+[0,40.359,0.407,"Peñíscola — castello templare"],
+[1,38.841,0.106,"Dénia"],
+[1,38.662,-0.210,"Fonts de l'Algar — cascate"],
+[1,38.599,-0.052,"Altea — borgo bianco"],
+[1,38.349,-0.478,"Alicante — castello di Santa Bárbara"],
+[2,38.085,-0.945,"Orihuela"],
+[2,37.864,-1.567,"Sierra Espuña"],
+[3,37.566,-1.309,"Bolnuevo — rocce erose"],
+[3,37.428,-1.500,"Cabo Cope / Águilas"],
+[3,36.744,-2.123,"Playa de los Genoveses"],
+[3,36.770,-2.230,"Salinas de Cabo de Gata — fenicotteri"],
+[3,36.847,-2.040,"Rodalquilar — miniere d'oro"],
+[3,36.966,-2.206,"Níjar — ceramiche"],
+[3,36.840,-2.471,"Alcazaba di Almería"],
+[3,37.299,-3.139,"Guadix — case-grotta"],
+[3,37.994,-3.467,"Baeza 🏆"],
+[4,37.130,-3.535,"Los Cahorros — ponti sospesi"],
+[4,36.930,-3.408,"Soportújar — paese delle streghe"],
+[4,37.001,-3.265,"Trevélez — jamón"],
+[4,37.182,-3.580,"Sacromonte — zambra nelle grotte"],
+[5,36.737,-3.785,"Playa de Cantarriján"],
+[5,36.733,-3.735,"La Herradura — snorkeling"],
+[5,36.762,-3.846,"Cueva de Nerja"],
+[5,36.751,-3.843,"Playa de Maro"],
+[5,36.747,-3.876,"Balcón de Europa (Nerja)"],
+[5,36.717,-4.288,"Cueva del Tesoro"],
+[5,36.723,-4.410,"Castillo de Gibralfaro"],
+[6,37.135,-4.733,"Laguna de Fuente de Piedra — fenicotteri"],
+[6,37.019,-4.561,"Dolmen di Antequera 🏆"],
+[6,37.886,-4.867,"Medina Azahara 🏆"],
+[7,36.935,-5.267,"Olvera — castello sul crinale"],
+[7,36.804,-5.392,"Garganta Verde — avvoltoi"],
+[7,36.760,-5.366,"Grazalema"],
+[8,36.595,-4.637,"Mijas Pueblo"],
+[8,36.589,-4.547,"Castello di Colomares"],
+[8,36.487,-4.743,"Cabopino — dune di Artola"],
+[8,36.487,-4.952,"Puerto Banús"],
+[8,36.444,-5.286,"Casares — borgo a cascata"],
+[8,36.110,-5.346,"Europa Point"],
+[9,36.135,-5.846,"Zahara de los Atunes"],
+[9,36.089,-5.775,"Baelo Claudia — rovine romane"],
+[9,36.232,-6.072,"El Palmar — surf e tramonti"],
+[9,36.277,-6.088,"Conil de la Frontera"],
+[10,36.751,-5.812,"Arcos de la Frontera"],
+[10,37.131,-6.486,"El Rocío — paese di sabbia"],
+[10,36.978,-6.553,"Matalascañas"],
+[10,37.057,-6.685,"Cuesta Maneli — dune"],
+[10,37.131,-6.803,"Mazagón"],
+[10,37.218,-6.974,"Marismas del Odiel — fenicotteri"],
+[10,37.361,-6.679,"Niebla — mura medievali"],
+[11,37.385,-6.003,"Triana"],
+];
+
+const map = L.map('map',{zoomControl:true}).setView([38.6,-3.0],6);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{
+  attribution:'&copy; OpenStreetMap &copy; CARTO', maxZoom:18
+}).addTo(map);
+
+// Percorso: segmenti colorati per fase
+for(let i=0;i<DAYS.length-1;i++){
+  const a=DAYS[i], b=DAYS[i+1];
+  L.polyline([[a[3],a[4]],[b[3],b[4]]],{
+    color:PHASES[a[2]].color, weight:3.5, opacity:.75, dashArray:'7 7'
+  }).addTo(map);
+}
+
+// Sotto-tappe
+SUBS.forEach(s=>{
+  L.marker([s[1],s[2]],{icon:L.divIcon({
+    className:'', iconSize:[12,12], iconAnchor:[6,6],
+    html:`<div class="sub-dot" style="width:12px;height:12px;background:${PHASES[s[0]].color}"></div>`
+  }),zIndexOffset:-100}).addTo(map).bindTooltip(s[3],{direction:'top',offset:[0,-6]});
+});
+
+// Marker giorni
+const markers=[];
+DAYS.forEach(d=>{
+  const c=PHASES[d[2]].color;
+  const m=L.marker([d[3],d[4]],{icon:L.divIcon({
+    className:'', iconSize:[30,30], iconAnchor:[15,15], popupAnchor:[0,-14],
+    html:`<div class="day-marker" style="width:30px;height:30px;background:${c}">${d[0]}</div>`
+  })}).addTo(map);
+  m.bindPopup(`
+    <div class="pp-day" style="color:${c}">Giorno ${d[0]} · ${d[1]} ${d[9]}</div>
+    <div class="pp-tit">${d[5]}</div>
+    <div class="pp-desc">${d[6]}</div>
+    <div class="pp-meta"><span>${d[7]}</span><span>⏱ ${d[8]}</span></div>`);
+  m.on('click',()=>highlight(d[0]));
+  markers.push(m);
+});
+
+// Sidebar
+const phasesEl=document.getElementById('phases');
+PHASES.forEach((p,pi)=>{
+  const days=DAYS.filter(d=>d[2]===pi);
+  const ph=document.createElement('div');
+  ph.className='phase'+(pi===0?' open':'');
+  ph.innerHTML=`<div class="phase-head">
+      <div class="ph-dot" style="background:${p.color}"></div>
+      <div class="ph-name">${p.name}</div>
+      <div class="ph-days">${p.range}</div>
+      <div class="ph-arrow">▶</div></div>
+    <div class="phase-body"></div>`;
+  ph.querySelector('.phase-head').addEventListener('click',()=>{
+    ph.classList.toggle('open');
+    if(ph.classList.contains('open')){
+      const b=L.latLngBounds(days.map(d=>[d[3],d[4]]));
+      map.flyToBounds(b.pad(.35),{duration:.8});
+    }
+  });
+  const body=ph.querySelector('.phase-body');
+  days.forEach(d=>{
+    const el=document.createElement('div');
+    el.className='day'; el.id='day-'+d[0];
+    el.innerHTML=`<div class="d-num" style="background:${p.color}">${d[0]}</div>
+      <div><div class="d-tit">${d[5]} <span class="pin">${d[9]}</span></div>
+      <div class="d-meta">${d[1]} · ${d[7]} · ⏱ ${d[8]}</div></div>`;
+    el.addEventListener('click',()=>{
+      map.flyTo([d[3],d[4]],11,{duration:.9});
+      setTimeout(()=>markers[d[0]-1].openPopup(),950);
+      highlight(d[0]);
+    });
+    body.appendChild(el);
+  });
+  phasesEl.appendChild(ph);
+});
+
+function highlight(n){
+  document.querySelectorAll('.day').forEach(e=>e.classList.remove('active'));
+  const el=document.getElementById('day-'+n);
+  if(el){el.classList.add('active');
+    el.closest('.phase').classList.add('open');
+    el.scrollIntoView({block:'nearest',behavior:'smooth'});}
+}
+</script>
+</body>
+</html>

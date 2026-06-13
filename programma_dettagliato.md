@@ -32,8 +32,8 @@ Mattina con calma → **16:00 Sagrada Família** (prenotata) → 18:30 Hospital 
 **9:30 Park Güell** (prenotato, col fresco) → 12:00 Casa Batlló / La Pedrera → pomeriggio Barri Gòtic → vermut e tapas.
 🛏 Barcellona (3/3)
 
-### G.3 · ven 17/7 — Tarragona → Valencia · 🚄 ~3h treno
-~9:00 treno → **10:15 Tarragona** (bagagli in consigna): anfiteatro sul mare + Part Alta + cattedrale + Balcó del Mediterrani → ~14:30 treno → **16:30 Valencia** → sera Barrio del Carmen.
+### G.3 · ven 17/7 — Barcellona → Valencia · 🚄 treno diretto 3h27
+✅ **Barcelona-Sants 11:05 → Valencia-Nord 14:32** (Intercity 00463 diretto, loc. GZM86V, coche 9 post. 2C+2D). Treno diretto = niente sosta a Tarragona. Mattina con calma a Barcellona → treno → check-in a Valencia nel primo pomeriggio → sera Barrio del Carmen.
 🛏 **Valencia** (1/2)
 
 ### G.4 · sab 18/7 — Valencia

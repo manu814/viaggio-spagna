@@ -2,7 +2,7 @@
 # Percorsi stradali reali (OSRM) — itinerario 24 giorni v3 (rotta ottimizzata, no giri dell'oca)
 cd /Users/manuelemerli/viaggio-spagna
 legs=(
-"t|2.1734,41.3851;1.2590,41.1150;-0.3760,39.4750|3"
+"t|2.1734,41.3851;-0.3760,39.4750|3"
 "c|-0.3760,39.4750;0.2050,38.7370|5"
 "c|0.2050,38.7370;-0.7200,37.6000|6"
 "c|-0.7200,37.6000;-2.1070,36.7600|6"

@@ -10,7 +10,7 @@
 | 0 | mar 14/7 | ✈️ Arrivo Barcellona 19:50 — check-in, cena (notte-cuscinetto) | — | sera |
 | 1 | mer 15/7 | Barcellona — Sagrada Família 🏆 + Sant Pau | — | giornata |
 | 2 | gio 16/7 | Barcellona — Park Güell 🏆 + Gòtic | — | giornata |
-| 3 | ven 17/7 | 🚄 sosta Tarragona 🏆 → Valencia | treno ~3h | Tarragona 3h |
+| 3 | ven 17/7 | 🚄 **Barcelona-Sants 11:05 → Valencia-Nord 14:32** (✅ DIRETTO, loc. GZM86V, coche 9 post. 2C/2D) — niente sosta Tarragona | treno 3h27 | Valencia pom. |
 | 4 | sab 18/7 | Valencia 🏆 (Lonja, Arts, Albufera) | — | giornata |
 | 5 | dom 19/7 | ritiro auto → Cala Granadella (opz. Guadalest+Algar) | 121 km · 1h35 | mare ½g+ |
 | 6 | lun 20/7 | → Cabo de Gata · sosta bagno Calblanque → **San José** | 433 km · 5h17 ⚠️ | 1 bagno |
@@ -34,7 +34,7 @@
 | 24 | ven 7/8 | Siviglia: Plaza de España + María Luisa → ✈️ volo 19:15 (aeroporto ~17:15) | — | mattina + pranzo |
 
 ## ⚠️ Prenotazioni urgenti (in ordine)
-1. **Treno BCN→Valencia** — promo Renfe attiva FINO ALL'11 GIUGNO (da €15) su renfe.com
+1. ✅ **Treno BCN→Valencia PRESO** — Intercity 00463 ven 17/7, 11:05→14:32, loc. **GZM86V**, coche 9 post. 2C+2D, €90,60 in 2 (tariffa Básico = NON rimborsabile/modificabile). Include Cercanías combinado (RKR6K + KTNM5). ⚠️ È DIRETTO → la sosta a Tarragona NON è in questa tratta (vedi nota sotto)
 2. **Alhambra** (G.10, ven 24 lug) — si esaurisce mesi prima
 3. **Caminito del Rey** (G.14, MARTEDÌ 28 lug, slot mattina ~11:00) — ⚠️ il lunedì è CHIUSO
 4. **Doñana 4×4** (G.17, ven 31 lug) + 🐂 **corrida El Puerto sab 1/8** (Servitoro — Morante 4 serate, vola via) + Sagrada/Park Güell (G.1-2) + Alcázar (G.23)
