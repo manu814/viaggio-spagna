@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Sur de España — Manuele & Sara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF3E3; --paper2:#F3E8CF; --ink:#2B2118; --ink-soft:#6B5D4F;
+    --accent:#B23A48; --green:#3F7A52; --orange:#D96C2F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{font-family:'Karla',sans-serif;color:var(--ink);background:var(--paper);
+    display:flex;flex-direction:column;overflow:hidden;
+    background-image:radial-gradient(rgba(43,33,24,.05) 1px, transparent 1px);background-size:14px 14px}
+
+  /* ---- top bar ---- */
+  .topbar{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:3px solid var(--ink);background:var(--paper);flex:none}
+  .brand{font-family:'Fraunces',serif;font-weight:900;font-size:18px;line-height:1;flex:1}
+  .brand em{font-style:italic;font-weight:400;color:var(--orange)}
+  .who{font-size:11px;border:2px solid var(--ink);padding:4px 9px;cursor:pointer;background:var(--paper);white-space:nowrap}
+  .who b{color:var(--accent)}
+
+  .tabs{display:flex;border-bottom:3px solid var(--ink);flex:none;background:var(--paper)}
+  .tab{flex:1;text-align:center;padding:12px 6px;font-family:'Fraunces',serif;font-weight:600;font-size:15px;
+    cursor:pointer;border-right:3px solid var(--ink);user-select:none;transition:background .12s}
+  .tab:last-child{border-right:none}
+  .tab.active{background:var(--ink);color:var(--paper)}
+
+  .view{flex:1;min-height:0;display:none}
+  .view.active{display:block}
+  #view-map{height:100%}
+  #view-map iframe{width:100%;height:100%;border:none;display:block}
+
+  /* ---- checklist ---- */
+  #view-list{height:100%;overflow-y:auto;padding:0 0 90px}
+  .sync{font-size:11px;text-align:center;padding:6px;color:var(--ink-soft);border-bottom:1px dashed rgba(43,33,24,.3)}
+  .sync.err{color:var(--accent);font-weight:700}
+  .sec{border-bottom:2px solid var(--ink)}
+  .sec-head{display:flex;align-items:center;gap:10px;padding:13px 16px;background:var(--paper2)}
+  .sec-emoji{font-size:18px}
+  .sec-name{font-family:'Fraunces',serif;font-weight:900;font-size:17px;flex:1}
+  .sec-count{font-size:12px;color:var(--ink-soft);font-weight:700}
+  .bar{height:6px;background:rgba(43,33,24,.15);margin:0 16px 10px}
+  .bar > i{display:block;height:100%;background:var(--green);width:0;transition:width .3s}
+
+  .item{display:flex;align-items:flex-start;gap:11px;padding:11px 16px;border-top:1px dashed rgba(43,33,24,.28)}
+  .item:first-child{border-top:none}
+  .box{width:24px;height:24px;border:2.5px solid var(--ink);flex:none;margin-top:1px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;background:var(--paper);transition:background .12s}
+  .box.on{background:var(--green);color:#fff}
+  .it-body{flex:1;min-width:0}
+  .it-text{font-size:14px;line-height:1.3}
+  .item.done .it-text{text-decoration:line-through;color:var(--ink-soft)}
+  .it-by{font-size:10.5px;color:var(--green);font-weight:700;margin-top:2px}
+  .del{border:none;background:none;color:var(--ink-soft);font-size:18px;cursor:pointer;padding:0 2px;line-height:1;flex:none;opacity:.5}
+  .del:hover{opacity:1;color:var(--accent)}
+
+  .additem{display:flex;gap:8px;padding:11px 16px}
+  .additem input{flex:1;border:2px solid var(--ink);padding:8px 10px;font-family:'Karla',sans-serif;font-size:13px;background:var(--paper)}
+  .additem button{border:2.5px solid var(--ink);background:var(--accent);color:#fff;font-weight:700;padding:0 14px;cursor:pointer;font-family:'Fraunces',serif}
+
+  /* ---- overlay scelta nome ---- */
+  #ask{position:fixed;inset:0;background:rgba(43,33,24,.7);z-index:5000;display:none;align-items:center;justify-content:center}
+  #ask.show{display:flex}
+  .card{background:var(--paper);border:3px solid var(--ink);box-shadow:8px 8px 0 rgba(43,33,24,.4);padding:24px;max-width:300px;text-align:center}
+  .card h2{font-family:'Fraunces',serif;font-size:22px;margin-bottom:6px}
+  .card p{font-size:13px;color:var(--ink-soft);margin-bottom:16px}
+  .card .row{display:flex;gap:10px}
+  .card button{flex:1;border:2.5px solid var(--ink);background:var(--paper);font-family:'Fraunces',serif;font-weight:700;font-size:16px;padding:12px;cursor:pointer;box-shadow:4px 4px 0 rgba(43,33,24,.3)}
+  .card button:hover{background:var(--paper2)}
+
+  .loading{padding:40px 16px;text-align:center;color:var(--ink-soft);font-style:italic}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">Sur de <em>España</em></div>
+  <div class="who" id="whoBtn">sei: <b id="whoName">—</b></div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" data-v="map">🗺️ Mappa</div>
+  <div class="tab" data-v="list">✅ Checklist</div>
+</div>
+
+<div class="view active" id="view-map">
+  <iframe src="index.html" title="Mappa del viaggio" loading="lazy"></iframe>
+</div>
+
+<div class="view" id="view-list">
+  <div class="sync" id="sync">collegamento…</div>
+  <div id="lists"><div class="loading">Carico la checklist…</div></div>
+</div>
+
+<div id="ask">
+  <div class="card">
+    <h2>Chi sei?</h2>
+    <p>Serve solo per segnare chi spunta le cose.</p>
+    <div class="row">
+      <button data-name="Manuele">Manuele</button>
+      <button data-name="Sara">Sara</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const SUPA_URL = "https://aaurzlktzgmhfmwvjwxb.supabase.co";
+const SUPA_KEY = "sb_publishable_a1s_1Z8OuoxuFZnXa9Kxyw_fv2mh8BM";
+
+const SECTIONS = [
+  {cat:"pren",    emoji:"🎟️", name:"Prenotazioni"},
+  {cat:"valigia", emoji:"🧳", name:"Valigia"},
+  {cat:"giorno",  emoji:"📅", name:"Cose per giorno"},
+];
+
+let sb=null, items=[], me=localStorage.getItem("viaggiatore")||null;
+
+/* ---- tabs ---- */
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  document.getElementById('view-'+t.dataset.v).classList.add('active');
+});
+
+/* ---- scelta nome ---- */
+function refreshWho(){document.getElementById('whoName').textContent = me||'—';}
+document.getElementById('whoBtn').onclick=()=>document.getElementById('ask').classList.add('show');
+document.querySelectorAll('#ask button').forEach(b=>b.onclick=()=>{
+  me=b.dataset.name; localStorage.setItem("viaggiatore",me);
+  document.getElementById('ask').classList.remove('show'); refreshWho();
+});
+if(!me) document.getElementById('ask').classList.add('show');
+refreshWho();
+
+/* ---- sync indicator ---- */
+function syncMsg(txt,err){const s=document.getElementById('sync');s.textContent=txt;s.classList.toggle('err',!!err);}
+
+/* ---- render ---- */
+function render(){
+  const root=document.getElementById('lists'); root.innerHTML='';
+  SECTIONS.forEach(sec=>{
+    const list=items.filter(i=>i.cat===sec.cat).sort((a,b)=>(a.pos||0)-(b.pos||0)||a.id.localeCompare(b.id));
+    const done=list.filter(i=>i.done).length;
+    const secEl=document.createElement('div'); secEl.className='sec';
+    secEl.innerHTML=`<div class="sec-head"><span class="sec-emoji">${sec.emoji}</span>
+      <span class="sec-name">${sec.name}</span><span class="sec-count">${done}/${list.length}</span></div>
+      <div class="bar"><i style="width:${list.length?done/list.length*100:0}%"></i></div>`;
+    list.forEach(it=>{
+      const row=document.createElement('div'); row.className='item'+(it.done?' done':'');
+      row.innerHTML=`<div class="box ${it.done?'on':''}">${it.done?'✓':''}</div>
+        <div class="it-body"><div class="it-text"></div>${it.done&&it.done_by?`<div class="it-by">✓ ${it.done_by}</div>`:''}</div>
+        <button class="del" title="Elimina">×</button>`;
+      row.querySelector('.it-text').textContent=it.text;
+      row.querySelector('.box').onclick=()=>toggle(it);
+      row.querySelector('.del').onclick=()=>del(it);
+      secEl.appendChild(row);
+    });
+    const add=document.createElement('div'); add.className='additem';
+    add.innerHTML=`<input placeholder="Aggiungi a ${sec.name.toLowerCase()}…"><button>+</button>`;
+    const inp=add.querySelector('input');
+    const go=()=>{const v=inp.value.trim(); if(v){addItem(sec.cat,v); inp.value='';}};
+    add.querySelector('button').onclick=go;
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter')go();});
+    secEl.appendChild(add);
+    root.appendChild(secEl);
+  });
+}
+
+/* ---- azioni Supabase ---- */
+async function toggle(it){
+  if(!me){document.getElementById('ask').classList.add('show');return;}
+  const now=!it.done;
+  it.done=now; it.done_by=now?me:null; render(); // ottimistico
+  const {error}=await sb.from('checklist_items').update({done:now,done_by:now?me:null}).eq('id',it.id);
+  if(error) syncMsg('errore salvataggio: '+error.message,true);
+}
+async function addItem(cat,text){
+  const id='u_'+Date.now().toString(36)+Math.floor(Math.random()*1e4).toString(36);
+  const pos=Math.max(0,...items.filter(i=>i.cat===cat).map(i=>i.pos||0))+1;
+  const row={id,cat,text,done:false,done_by:null,pos};
+  items.push(row); render();
+  const {error}=await sb.from('checklist_items').insert(row);
+  if(error) syncMsg('errore aggiunta: '+error.message,true);
+}
+async function del(it){
+  if(!confirm('Eliminare «'+it.text+'»?'))return;
+  items=items.filter(i=>i.id!==it.id); render();
+  const {error}=await sb.from('checklist_items').delete().eq('id',it.id);
+  if(error) syncMsg('errore eliminazione: '+error.message,true);
+}
+
+async function load(){
+  const {data,error}=await sb.from('checklist_items').select('*');
+  if(error){syncMsg('errore caricamento: '+error.message,true);return;}
+  items=data||[]; render(); syncMsg('✓ sincronizzato in tempo reale');
+}
+
+function start(){
+  if(SUPA_URL.startsWith('__')){syncMsg('database non ancora collegato',true);
+    document.getElementById('lists').innerHTML='<div class="loading">Backend in fase di collegamento…</div>';return;}
+  sb=supabase.createClient(SUPA_URL,SUPA_KEY);
+  load();
+  sb.channel('cl').on('postgres_changes',{event:'*',schema:'public',table:'checklist_items'},()=>load()).subscribe();
+}
+start();
+</script>
+</body>
+</html>
