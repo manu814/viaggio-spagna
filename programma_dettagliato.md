@@ -86,9 +86,9 @@ Gita: ~45 min fino ad **Agua Amarga** → camminata 30 min → **Cala de Enmedio
 *Pedaggio opz. Málaga-Marbella ~€8, oppure costiera gratis.*
 
 ### G.14 · mar 28/7 — Setenil + Caminito → Córdoba · 🚗 227 km · 3h29
-⏰ 8:00 partenza → **8:30 Setenil** (colazione sotto la roccia) → **11:00-14:15 Caminito del Rey** (slot prenotato; cappello + acqua) → pranzo a El Chorro → 17:15 Córdoba (sera nella Judería).
+⏰ 8:30 Setenil con calma (colazione sotto la roccia) → **12:20 Caminito del Rey ✅ visita guidata** (~12:20-15:00; cappello + acqua + DOCUMENTO originale) → pranzo veloce a El Chorro → ~18:30 Córdoba (sera nella Judería).
 🛏 **Córdoba** (1/2)
-*⚠️ Caminito: prenotare, è martedì (il lunedì è chiuso); sveglia presto.*
+*✅ Caminito PRESO: guidata 12:20 (il General €10 era sold out). È martedì, il lunedì è chiuso. La guidata slitta tutto di ~1h: niente fretta a Setenil, Córdoba a inizio serata.*
 
 ## FASE 5 · Córdoba e Doñana
 

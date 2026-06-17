@@ -21,7 +21,7 @@
 | 11 | sab 25/7 | Las Alpujarras → **notte a Capileira** | 74 km · 1h26 | giornata + notte in quota |
 | 12 | dom 26/7 | Frigiliana + Maro → Málaga ★ (sera Alcazaba, notte) | 155 km · 2h37 | borgo+mare ½g+sera |
 | 13 | lun 27/7 | Marbella ★ → panoramica A-397 → Ronda (Caminito chiuso il lunedì!) | 120 km · 1h53 | Marbella 2h + Ronda |
-| 14 | mar 28/7 | Setenil (colazione 8:30) → **Caminito ⚠️slot ~11** → Córdoba (sera Judería) | 227 km · 3h29 | 1h30 + 3h + sera |
+| 14 | mar 28/7 | Setenil (colazione 8:30) → **Caminito ✅ guidata 12:20** → Córdoba (sera Judería ~18:30) | 227 km · 3h29 | 1h30 + 3h + sera |
 | 15 | mer 29/7 | Córdoba: Mezquita 🏆 (feriali 8:30-9:30 GRATIS) + patios + tramonto | — | giornata piena |
 | 16 | gio 30/7 | (opz. Medina Azahara 🏆) → El Rocío (notte) | 226 km · 2h41 | opz. 2h + viaggio |
 | 17 | ven 31/7 | **Doñana 🏆 ★** ⚠️prenotare + Sanlúcar ★ tramonto → Jerez (flamenco, notte) | 206 km · 2h37 | 4×4 4h + sera |
@@ -36,10 +36,10 @@
 ## ⚠️ Prenotazioni urgenti (in ordine)
 1. ✅ **Treno BCN→Valencia PRESO** — Intercity 00463 ven 17/7, 11:05→14:32, loc. **GZM86V**, coche 9 post. 2C+2D, €90,60 in 2 (tariffa Básico = NON rimborsabile/modificabile). Include Cercanías combinado (RKR6K + KTNM5). ⚠️ È DIRETTO → la sosta a Tarragona NON è in questa tratta (vedi nota sotto)
 2. **Alhambra** (G.10, ven 24 lug) — si esaurisce mesi prima
-3. **Caminito del Rey** (G.14, MARTEDÌ 28 lug, slot mattina ~11:00) — ⚠️ il lunedì è CHIUSO
+3. ✅ **Caminito del Rey PRESO (2/2)** — G.14, MARTEDÌ 28 lug, **visita guidata 12:20** (General €10 era SOLD OUT). Sara Pilotto €19,50 + Manuele Merli €21,50 (include **parking P al Centro Recepción Visitantes = ingresso NORD**) = €41. Portare DOCUMENTO originale + cappello/acqua. ⚠️ Senso unico nord→sud: per tornare all'auto serve la **navetta El Chorro→nord (~€2,50, da prendere lì)**. Il lunedì è chiuso. NB: la guidata slitta tutto di ~1h → Córdoba ~18:30.
 4. **Doñana 4×4** (G.17, ven 31 lug) + Sagrada/Park Güell (G.1-2) + Alcázar (G.23)
 4b. 🐂 **COMPRARE BIGLIETTI corrida El Puerto sab 1/8 ore 20:00** (Morante-Talavante-Ortega, tori Álvaro Núñez) — ⏰ il biglietto **SINGOLO** apre in vendita il **26/7** su `circuitostaurinos.es` (o taquilla tel +34 603 654 860). 2 posti in **SOMBRA**. ❌ NON il pacchetto 3 giorni di Servitoro (€95-150 a testa). 📅 Promemoria agenda impostato per il 26/7.
-5. **Auto**: ritiro Valencia G.5 (dom 19/7) → riconsegna Siviglia G.22 (mer 5/8), one-way — 17 giorni, niente parcheggio a Siviglia
+5. ✅ **Auto PRESA** (Sara) — one-way ritiro Valencia G.5 (dom 19/7) → riconsegna Siviglia G.22 (mer 5/8), 17 giorni, niente parcheggio a Siviglia
 6. ✈️ **Voli (presi):** andata 14/7 Milano 18:10 → BCN 19:50 · ritorno 7/8 Siviglia **19:15** (essere in aeroporto ~17:15; auto già resa il 5/8, nessun vincolo d'orario auto). Arrivo il 14 sera = **3 notti a Barcellona** (14-15-16), visite invariate dal 15.
 
 ## Tagli definitivi (non recuperati)
